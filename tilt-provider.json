@@ -1,0 +1,17 @@
+[
+    {
+        "name": "meta",
+        "config": {
+            "image": "github.com/capi-samples/cluster-api-meta-controller:dev",
+            "live_reload_deps": [
+                "main.go",
+                "go.mod",
+                "go.sum",
+                "api",
+                "internal",
+                "pkg"
+            ],
+            "label": "CAPM"
+        }
+    }
+]

@@ -1,0 +1,101 @@
+run:
+  timeout: 5m
+  allow-parallel-runners: true
+  go: "1.22"
+
+issues:
+  # don't skip warning about doc comments
+  # don't exclude the default set of lint
+  exclude-use-default: false
+  # restore some of the defaults
+  # (fill in the rest as needed)
+  exclude-rules:
+    - path: "api/*"
+      linters:
+        - lll
+    - path: "internal/*"
+      linters:
+        - dupl
+        - lll
+    - path: ".*\\_test.go$"
+      linters:
+        - dot-imports
+  exclude-files:
+    - "zz_generated.*\\.go$"
+    - "vendored_openapi\\.go$"
+
+linters:
+  disable-all: true
+  enable:
+  - asasalint
+  - asciicheck
+  - bidichk
+  - bodyclose
+  - containedctx
+  - decorder
+  #- depguard
+  - dogsled
+  - dupl
+  - dupword
+  - durationcheck
+  - errcheck
+  - errchkjson
+  - errorlint
+  - execinquery
+  - exportloopref
+  - gci
+  - ginkgolinter
+  - goconst
+  - gocritic
+  - gocyclo
+  - godot
+  - gofmt
+  - goimports
+  - goprintffuncname
+  - gosec
+  - gosimple
+  - govet
+  - importas
+  - ineffassign
+  - intrange
+  # - lll
+  - loggercheck
+  - misspell
+  - nakedret
+  - nilerr
+  - noctx
+  - nolintlint
+  - nosprintfhostport
+  - prealloc
+  - predeclared
+  - reassign
+  - revive # TODO: re-enable at some point, disabled temporarily whilst there is a lot of scaffolded code and no real implementation
+  - rowserrcheck
+  - staticcheck
+  - stylecheck
+  - tenv
+  - thelper
+  - typecheck
+  - unconvert
+  # - unparam # TODO: re-enable at some point, disabled temporarily whilst there is a lot of scaffolded code and no real implementation
+  - unused
+  - usestdlibvars
+  - whitespace
+
+linters-settings:
+  gci:
+    sections:
+      - standard
+      - default
+      - prefix(github.com/capi-samples/cluster-api-provider-meta)
+  goimports:
+    local-prefixes: github.com/capi-samples/cluster-api-provider-meta
+  revive:
+    rules:
+      - name: var-naming
+        arguments:
+          - ["ID"]
+          - []
+      - name: exported
+        arguments:
+          - disableStutteringCheck
